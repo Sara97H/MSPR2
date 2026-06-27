@@ -49,7 +49,7 @@ export default function Topbar({ setIsSidebarOpen, role = 'super-admin' }) {
             className="h-9 w-9 rounded-full border border-slate-200 bg-slate-100"
           />
           <div className="hidden text-left sm:block">
-            <p className="text-sm font-semibold text-slate-800">Sara Martin</p>
+            <p className="text-sm font-semibold text-slate-800">Sara Haddad</p>
             <p className="text-xs text-slate-400">Super Administratrice</p>
           </div>
         </button>

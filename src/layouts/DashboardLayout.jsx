@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
+  navItems = [],
   title = 'Vue consolidée',
   topTabs = [],
   activeTab = 'all',
@@ -26,7 +27,7 @@ export default function DashboardLayout({
         />
       )}
 
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen}  navItems={navItems}/>
 
       <div className="lg:ml-72 flex flex-col min-h-screen">
         {/* TOPBAR */}

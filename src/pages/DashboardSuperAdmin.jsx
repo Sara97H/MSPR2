@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import DashboardLayout from '../layouts/DashboardLayout';
 import AlertsToProcess from '../components/AlertsToProcess';
+import { superAdminNav } from '../config/navigation';
 import CountrySummaryTable from '../components/CountrySummaryTable';
 import {
   Chart as ChartJS,
   CategoryScale,
- LinearScale,
+  LinearScale,
   PointElement,
   LineElement,
   ArcElement,
@@ -253,6 +254,64 @@ const DASHBOARD_DATA = {
   },
 };
 
+const ALERTS_DATA = {
+  all: [
+    {
+      id: 1,
+      type: 'danger',
+      title: 'Lot LOT-BR-2025-014 périmé — 399 jours de stockage',
+      meta: 'Brésil · Entrepôt Sud · depuis le 18 juin',
+    },
+    {
+      id: 2,
+      type: 'warning',
+      title: 'Conditions hors plage — 36,0 °C / 42,6 % (attendu 26–32 °C)',
+      meta: 'Brésil · Entrepôt 1 · déclenchée à 11:30 · 8 notifications',
+    },
+    {
+      id: 3,
+      type: 'warning',
+      title: 'Humidité basse — 71 % (attendu 78–82 %)',
+      meta: 'Colombie · Finca La Esperanza · déclenchée à 09:14',
+    },
+    {
+      id: 4,
+      type: 'danger',
+      title: 'Lot LOT-CO-2025-021 proche péremption',
+      meta: 'Colombie · Entrepôt Bogotá · 362 jours de stockage',
+    },
+  ],
+  brazil: [
+    {
+      id: 1,
+      type: 'danger',
+      title: 'Lot LOT-BR-2025-014 périmé — 399 jours de stockage',
+      meta: 'Brésil · Entrepôt Sud · depuis le 18 juin',
+    },
+    {
+      id: 2,
+      type: 'warning',
+      title: 'Conditions hors plage — 36,0 °C / 42,6 % (attendu 26–32 °C)',
+      meta: 'Brésil · Entrepôt 1 · déclenchée à 11:30 · 8 notifications',
+    },
+  ],
+  ecuador: [],
+  colombia: [
+    {
+      id: 3,
+      type: 'warning',
+      title: 'Humidité basse — 71 % (attendu 78–82 %)',
+      meta: 'Colombie · Finca La Esperanza · déclenchée à 09:14',
+    },
+    {
+      id: 4,
+      type: 'danger',
+      title: 'Lot LOT-CO-2025-021 proche péremption',
+      meta: 'Colombie · Entrepôt Bogotá · 362 jours de stockage',
+    },
+  ],
+};
+
 function KpiCard({ item }) {
   const leftBorder =
     item.tone === 'danger'
@@ -269,7 +328,9 @@ function KpiCard({ item }) {
       : 'text-slate-500';
 
   return (
-    <div className={`bg-white border-l-4 ${leftBorder} border-t border-r border-b border-slate-200 rounded-2xl p-5 shadow-sm`}>
+    <div
+      className={`bg-white border-l-4 ${leftBorder} border-t border-r border-b border-slate-200 rounded-2xl p-5 shadow-sm`}
+    >
       <p className="text-sm font-medium uppercase tracking-wider text-slate-500 mb-3">
         {item.label}
       </p>
@@ -297,7 +358,9 @@ function StatusBadge({ children, type = 'ok' }) {
       : 'bg-emerald-50 text-emerald-700 border border-emerald-200';
 
   return (
-    <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${styles}`}>
+    <span
+      className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${styles}`}
+    >
       {children}
     </span>
   );
@@ -306,6 +369,7 @@ function StatusBadge({ children, type = 'ok' }) {
 export default function Dashboard() {
   const [selectedCountry, setSelectedCountry] = useState('all');
   const current = DASHBOARD_DATA[selectedCountry];
+  const alerts = ALERTS_DATA[selectedCountry] || [];
 
   const lineChartData = useMemo(
     () => ({
@@ -392,6 +456,7 @@ export default function Dashboard() {
   return (
     <DashboardLayout
       title="Vue consolidée"
+      navItems={superAdminNav}
       topTabs={COUNTRIES}
       activeTab={selectedCountry}
       onTabChange={setSelectedCountry}
@@ -401,26 +466,20 @@ export default function Dashboard() {
         role: 'Siège · tous pays',
       }}
     >
-      {/* Page title */}
       <div className="mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-2">
           {current.title}
         </h1>
-        <p className="text-slate-500 text-base sm:text-lg">
-          {current.subtitle}
-        </p>
+        <p className="text-slate-500 text-base sm:text-lg">{current.subtitle}</p>
       </div>
 
-      {/* KPI */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
         {current.kpis.map((item) => (
           <KpiCard key={item.label} item={item} />
         ))}
       </section>
 
-      {/* Charts row */}
       <section className="grid grid-cols-1 xl:grid-cols-[1.55fr_1fr] gap-6 mb-8">
-        {/* Main line chart */}
         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
           <div className="px-6 py-5 border-b border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -463,7 +522,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Doughnut */}
         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
           <div className="px-6 py-5 border-b border-slate-200">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -505,8 +563,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Table */}
-      <section className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+      <section className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-8">
         <div className="px-6 py-5 border-b border-slate-200">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
             Répartition des stocks
@@ -551,10 +608,12 @@ export default function Dashboard() {
           </table>
         </div>
       </section>
-      <div className="mt-8 space-y-8">
-  <AlertsToProcess />
-  <CountrySummaryTable />
-</div>
+
+      <div className="space-y-8">
+        <AlertsToProcess alerts={alerts} />
+
+        {selectedCountry === 'all' && <CountrySummaryTable />}
+      </div>
     </DashboardLayout>
   );
 }
