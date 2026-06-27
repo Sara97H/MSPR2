@@ -95,33 +95,33 @@ export default function LotDetails({ lot, onClose }) {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 mt-6 shadow-lg relative">
+    <div className="bg-white border border-slate-200 rounded-xl p-6 mt-6 shadow-lg relative">
       
       <button 
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+        className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
       >
         <X className="w-5 h-5" />
       </button>
 
-      <div className="mb-6 border-b border-slate-800 pb-4">
-        <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-          <Activity className="w-5 h-5 text-emerald-400" />
+      <div className="mb-6 border-b border-slate-200 pb-4">
+        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <Activity className="w-5 h-5 text-emerald-600" />
           Détails IoT du Lot {lot.id}
         </h2>
-        <p className="text-slate-400 text-sm mt-1">Origine : {lot.country} &bull; Historique des 7 derniers jours</p>
+        <p className="text-slate-500 text-sm mt-1">Origine : {lot.country} &bull; Historique des 7 derniers jours</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Température */}
-        <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">
+        <div className="bg-slate-100/30 border border-slate-300/50 rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-              <ThermometerSun className="w-4 h-4 text-rose-400" />
+            <h3 className="text-sm font-semibold text-slate-600 flex items-center gap-2">
+              <ThermometerSun className="w-4 h-4 text-rose-600" />
               Évolution Température
             </h3>
-            <span className="text-xl font-bold text-slate-100">{lot.currentTemp}°C</span>
+            <span className="text-xl font-bold text-slate-900">{lot.currentTemp}°C</span>
           </div>
           <div className="h-48 w-full">
             <Line options={commonOptions} data={tempChartData} />
@@ -129,13 +129,13 @@ export default function LotDetails({ lot, onClose }) {
         </div>
 
         {/* Humidité */}
-        <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">
+        <div className="bg-slate-100/30 border border-slate-300/50 rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-slate-600 flex items-center gap-2">
               <Droplets className="w-4 h-4 text-blue-400" />
               Évolution Humidité
             </h3>
-            <span className="text-xl font-bold text-slate-100">{lot.currentHum}%</span>
+            <span className="text-xl font-bold text-slate-900">{lot.currentHum}%</span>
           </div>
           <div className="h-48 w-full">
             <Line options={commonOptions} data={humChartData} />

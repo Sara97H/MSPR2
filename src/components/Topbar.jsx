@@ -1,45 +1,56 @@
 import React from 'react';
-import { Search, Bell, Menu } from 'lucide-react';
+import { Search, Bell, Menu, Globe2 } from 'lucide-react';
 
-export default function Topbar({ setIsSidebarOpen }) {
+export default function Topbar({ setIsSidebarOpen, role = 'super-admin' }) {
   return (
-    <header className="h-16 flex items-center justify-between px-6 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-30">
-      
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/80 px-6 backdrop-blur-md">
       <div className="flex items-center gap-4">
-        <button 
-          className="lg:hidden p-2 -ml-2 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800"
+        <button
+          className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-900 lg:hidden"
           onClick={() => setIsSidebarOpen(true)}
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="h-6 w-6" />
         </button>
 
-        <div className="hidden md:flex items-center px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 w-80 focus-within:border-emerald-500/50 focus-within:ring-1 focus-within:ring-emerald-500/50 transition-all">
-          <Search className="w-4 h-4 mr-2" />
-          <input 
-            type="text" 
-            placeholder="Rechercher un lot (ex: LT-2401)..." 
-            className="bg-transparent border-none outline-none text-sm w-full text-slate-200 placeholder-slate-500"
-          />
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Console</p>
+          <h2 className="text-lg font-bold text-slate-900">
+            {role === 'super-admin' ? 'Super Admin Dashboard' : 'Dashboard'}
+          </h2>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <button className="relative p-2 text-slate-400 hover:text-slate-200 rounded-full hover:bg-slate-800 transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full"></span>
-        </button>
-        
-        <div className="w-px h-6 bg-slate-800 hidden sm:block"></div>
+      <div className="hidden md:flex items-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-400 w-[360px] focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100 transition">
+        <Search className="mr-2 h-4 w-4" />
+        <input
+          type="text"
+          placeholder="Rechercher un lot, un entrepôt, un capteur..."
+          className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
+        />
+      </div>
 
-        <button className="flex items-center gap-3 hover:bg-slate-800 p-1 rounded-lg transition-colors">
-          <img 
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Manager&backgroundColor=0f172a" 
-            alt="User" 
-            className="w-8 h-8 rounded-full border border-slate-700 bg-slate-800"
+      <div className="flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-700">
+          <Globe2 className="h-4 w-4" />
+          Monde
+        </div>
+
+        <button className="relative rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-800">
+          <Bell className="h-5 w-5" />
+          <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500"></span>
+        </button>
+
+        <div className="hidden h-6 w-px bg-slate-200 sm:block"></div>
+
+        <button className="flex items-center gap-3 rounded-xl p-1 transition hover:bg-slate-100">
+          <img
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=FutureKawaAdmin&backgroundColor=transparent"
+            alt="Super Admin"
+            className="h-9 w-9 rounded-full border border-slate-200 bg-slate-100"
           />
-          <div className="hidden sm:block text-left mr-2">
-            <p className="text-sm font-medium text-slate-200">Sara</p>
-            <p className="text-xs text-slate-500">Superviseur Logistique</p>
+          <div className="hidden text-left sm:block">
+            <p className="text-sm font-semibold text-slate-800">Sara Martin</p>
+            <p className="text-xs text-slate-400">Super Administratrice</p>
           </div>
         </button>
       </div>

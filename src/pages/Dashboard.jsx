@@ -76,43 +76,43 @@ export default function Dashboard() {
     <DashboardLayout selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}>
       
       <div className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
           Vue d'ensemble des Stocks
         </h1>
-        <p className="text-slate-400 text-sm sm:text-base">
+        <p className="text-slate-500 text-sm sm:text-base">
           Supervision des lots de café vert de FutureKawa. Application du principe FIFO (First In, First Out).
         </p>
       </div>
 
       {/* Cartes de statistiques actuelles */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
-          <div className="p-3 bg-rose-500/10 text-rose-400 rounded-lg border border-rose-500/20">
+        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-rose-50 text-rose-600 rounded-lg border border-rose-200">
             <ThermometerSun className="w-6 h-6" />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-400">Température Moyenne Actuelle</p>
-            <p className="text-2xl font-bold text-slate-100">{avgTemp}°C</p>
+            <p className="text-sm font-medium text-slate-500">Température Moyenne Actuelle</p>
+            <p className="text-2xl font-bold text-slate-900">{avgTemp}°C</p>
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
-          <div className="p-3 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">
+        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-blue-50 text-blue-600 rounded-lg border border-blue-200">
             <Droplets className="w-6 h-6" />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-400">Humidité Moyenne Actuelle</p>
-            <p className="text-2xl font-bold text-slate-100">{avgHum}%</p>
+            <p className="text-sm font-medium text-slate-500">Humidité Moyenne Actuelle</p>
+            <p className="text-2xl font-bold text-slate-900">{avgHum}%</p>
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex items-center gap-4">
-          <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg border border-emerald-500/20">
+        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-emerald-50 text-emerald-600 rounded-lg border border-emerald-200">
             <PackageSearch className="w-6 h-6" />
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-400">Total Lots Affichés</p>
-            <p className="text-2xl font-bold text-slate-100">{filteredLots.length}</p>
+            <p className="text-sm font-medium text-slate-500">Total Lots Affichés</p>
+            <p className="text-2xl font-bold text-slate-900">{filteredLots.length}</p>
           </div>
         </div>
       </div>

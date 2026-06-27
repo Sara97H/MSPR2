@@ -50,17 +50,17 @@ function SignIn() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       
-      <div className="w-full max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl shadow-green-900/20 p-8 sm:p-10">
+      <div className="w-full max-w-md bg-white backdrop-blur-2xl border border-slate-200 rounded-3xl shadow-2xl shadow-slate-200/50 p-8 sm:p-10">
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-green-400">
+          <h1 className="text-4xl font-bold text-emerald-600">
             FutureKawa
           </h1>
 
-          <p className="text-slate-300 mt-2">
+          <p className="text-slate-600 mt-2">
             Welcome back
           </p>
         </div>
@@ -70,7 +70,7 @@ function SignIn() {
 
           {/* Email */}
           <div>
-            <label className="text-slate-300 text-sm mb-2 block">
+            <label className="text-slate-600 text-sm mb-2 block">
               Email
             </label>
 
@@ -83,8 +83,8 @@ function SignIn() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className={`w-full bg-slate-800/60 text-white rounded-xl py-3 pl-12 pr-4 outline-none border transition ${
-                  errors.email ? "border-red-500 focus:border-red-500" : "border-slate-700 focus:border-green-400"
+                className={`w-full bg-slate-50 text-slate-900 rounded-xl py-3 pl-12 pr-4 outline-none border transition ${
+                  errors.email ? "border-red-500 focus:border-red-500" : "border-slate-300 focus:border-green-400"
                 }`}
               />
             </div>
@@ -93,7 +93,7 @@ function SignIn() {
 
           {/* Password */}
           <div>
-            <label className="text-slate-300 text-sm mb-2 block">
+            <label className="text-slate-600 text-sm mb-2 block">
               Password
             </label>
 
@@ -106,8 +106,8 @@ function SignIn() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
-                className={`w-full bg-slate-800/60 text-white rounded-xl py-3 pl-12 pr-4 outline-none border transition ${
-                  errors.password ? "border-red-500 focus:border-red-500" : "border-slate-700 focus:border-green-400"
+                className={`w-full bg-slate-50 text-slate-900 rounded-xl py-3 pl-12 pr-4 outline-none border transition ${
+                  errors.password ? "border-red-500 focus:border-red-500" : "border-slate-300 focus:border-green-400"
                 }`}
               />
             </div>
@@ -117,14 +117,14 @@ function SignIn() {
           {/* Remember */}
           <div className="flex items-center justify-between text-sm">
 
-            <label className="flex items-center gap-2 text-slate-300">
+            <label className="flex items-center gap-2 text-slate-600">
               <input type="checkbox" />
               Remember me
             </label>
 
             <button
               type="button"
-              className="text-green-400 hover:text-green-300"
+              className="text-emerald-600 hover:text-green-300"
             >
               Forgot password?
             </button>
@@ -143,24 +143,24 @@ function SignIn() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 my-6">
-          <div className="h-px bg-slate-700 flex-1"></div>
+          <div className="h-px bg-slate-200 flex-1"></div>
 
           <span className="text-slate-400 text-sm">
             OR
           </span>
 
-          <div className="h-px bg-slate-700 flex-1"></div>
+          <div className="h-px bg-slate-200 flex-1"></div>
         </div>
 
         {/* Social login */}
         <div className="grid grid-cols-2 gap-4">
 
-          <button className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 transition text-white py-3 rounded-xl">
+          <button className="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 transition text-slate-900 py-3 rounded-xl">
             <FaGoogle />
             Google
           </button>
 
-          <button className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 transition text-white py-3 rounded-xl">
+          <button className="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 transition text-slate-900 py-3 rounded-xl">
             <FaGithub />
             GitHub
           </button>
@@ -170,7 +170,7 @@ function SignIn() {
         {/* Footer */}
         <p className="text-center text-slate-400 mt-8">
           Don’t have an account?{" "}
-          <Link to="/signup" className="text-green-400 cursor-pointer hover:text-green-300">
+          <Link to="/signup" className="text-emerald-600 cursor-pointer hover:text-green-300">
             Sign Up
           </Link>
         </p>

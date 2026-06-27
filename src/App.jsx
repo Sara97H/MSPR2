@@ -1,9 +1,6 @@
-import Dashboard from "./pages/Dashboard"
+import React from 'react';
+import DashboardAdminPays from './pages/DashboardAdminPays';
 
-function App() {
-  return (
-    <Dashboard />
-  )
+export default function App() {
+  return <DashboardAdminPays />;
 }
-
-export default App

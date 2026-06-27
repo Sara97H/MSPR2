@@ -23,10 +23,10 @@ export default function LotsTable({ lots, onSelectLot }) {
   const currentDate = new Date(); // En contexte "2026-06-15"
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
+    <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead className="bg-slate-950/50 text-slate-400 border-b border-slate-800">
+          <thead className="bg-slate-50/50 text-slate-500 border-b border-slate-200">
             <tr>
               <th className="px-6 py-4 font-medium">ID Lot</th>
               <th className="px-6 py-4 font-medium">Pays / Entrepôt</th>
@@ -36,7 +36,7 @@ export default function LotsTable({ lots, onSelectLot }) {
               <th className="px-6 py-4 font-medium text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/50">
+          <tbody className="divide-y divide-slate-200">
             {sortedLots.map((lot) => {
               const storageDateObj = new Date(lot.storageDate);
               const daysInStorage = Math.floor((currentDate - storageDateObj) / (1000 * 60 * 60 * 24));
@@ -44,45 +44,45 @@ export default function LotsTable({ lots, onSelectLot }) {
               const hasQualityAlert = isQualityAlert(lot.country, lot.currentTemp, lot.currentHum);
 
               return (
-                <tr key={lot.id} className="hover:bg-slate-800/30 transition-colors group">
+                <tr key={lot.id} className="hover:bg-slate-100/30 transition-colors group">
                   <td className="px-6 py-4">
-                    <span className="font-semibold text-slate-200">{lot.id}</span>
+                    <span className="font-semibold text-slate-800">{lot.id}</span>
                   </td>
-                  <td className="px-6 py-4 text-slate-300">
+                  <td className="px-6 py-4 text-slate-600">
                     <div className="flex items-center gap-2">
                        <span className="w-2 h-2 rounded-full bg-slate-600"></span>
                        {lot.country}
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-slate-300">
+                    <div className="flex items-center gap-2 text-slate-600">
                       <Clock className="w-4 h-4 text-slate-500" />
                       {storageDateObj.toLocaleDateString('fr-FR')}
-                      <span className={`ml-2 text-xs font-medium px-2 py-0.5 rounded-md ${isExpired ? 'bg-amber-500/10 text-amber-400' : 'bg-slate-800 text-slate-400'}`}>
+                      <span className={`ml-2 text-xs font-medium px-2 py-0.5 rounded-md ${isExpired ? 'bg-amber-50 text-amber-600' : 'bg-slate-100 text-slate-500'}`}>
                         {daysInStorage} j
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-col gap-1 text-xs">
-                      <span className={`${lot.currentTemp < IDEAL_CONDITIONS[lot.country].minTemp || lot.currentTemp > IDEAL_CONDITIONS[lot.country].maxTemp ? 'text-rose-400 font-medium' : 'text-slate-400'}`}>Temp: {lot.currentTemp}°C</span>
-                      <span className={`${lot.currentHum < IDEAL_CONDITIONS[lot.country].minHum || lot.currentHum > IDEAL_CONDITIONS[lot.country].maxHum ? 'text-rose-400 font-medium' : 'text-slate-400'}`}>Hum: {lot.currentHum}%</span>
+                      <span className={`${lot.currentTemp < IDEAL_CONDITIONS[lot.country].minTemp || lot.currentTemp > IDEAL_CONDITIONS[lot.country].maxTemp ? 'text-rose-600 font-medium' : 'text-slate-500'}`}>Temp: {lot.currentTemp}°C</span>
+                      <span className={`${lot.currentHum < IDEAL_CONDITIONS[lot.country].minHum || lot.currentHum > IDEAL_CONDITIONS[lot.country].maxHum ? 'text-rose-600 font-medium' : 'text-slate-500'}`}>Hum: {lot.currentHum}%</span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
                       {isExpired && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-500/20 text-amber-600 text-xs font-medium">
                           <AlertTriangle className="w-3.5 h-3.5" /> Péremption (&gt;1 an)
                         </span>
                       )}
                       {hasQualityAlert && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-medium">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-rose-50 border border-rose-500/20 text-rose-600 text-xs font-medium">
                           <AlertTriangle className="w-3.5 h-3.5" /> Anomalie Qualité
                         </span>
                       )}
                       {!isExpired && !hasQualityAlert && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-600 text-xs font-medium">
                           <CheckCircle2 className="w-3.5 h-3.5" /> Optimal
                         </span>
                       )}
@@ -91,7 +91,7 @@ export default function LotsTable({ lots, onSelectLot }) {
                   <td className="px-6 py-4 text-right">
                     <button 
                       onClick={() => onSelectLot(lot)}
-                      className="inline-flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent transition-colors"
+                      className="inline-flex items-center justify-center p-2 rounded-lg text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 border border-transparent transition-colors"
                       title="Voir les détails IoT"
                     >
                       <ChevronRight className="w-5 h-5" />
